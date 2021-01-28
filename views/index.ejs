@@ -23,11 +23,13 @@
             <th>Clicks</th>
         </thead>
         <tbody>
-            <tr>
-                <td><a href="https://avshalomtam.github.io/">https://avshalomtam.github.io/</a></td>
-                <td><a href="/123456">123456</a></td>
-                <td>10</td>
-            </tr>
+            <% shortUrls.forEach(shortUrl => { %>
+                <tr>
+                    <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+                    <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                    <td><%= shortUrl.clicks %></td>
+                </tr>
+            <% }) %>
         </tbody>
     </table>
     </div>
