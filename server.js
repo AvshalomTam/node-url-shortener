@@ -18,12 +18,14 @@ app.get('/', async (req, res) => {
 
 app.post('/shortUrls', async (req, res) => {
     await ShortUrl.create({ full: req.body.fullUrl });
+    // we want to directly show the new url in table - so redirect to homepage
     res.redirect('/');
 })
 
 app.get('/:shortUrl', async (req, res) => {
     const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
-    if (shortUrl == null) return res.sendStatus(404);
+    // if (shortUrl == null) return res.sendStatus(404);
+    if (shortUrl == null) return res.render('404page');
     // update clicks
     shortUrl.clicks++
     shortUrl.save()
